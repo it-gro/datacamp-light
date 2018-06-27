@@ -304,7 +304,8 @@ export class App extends React.Component<IAppProps, IAppState> {
             className={`${styles.githubLink}`}
             href="https://github.com/datacamp/datacamp-light"
           >
-            <GithubIcon />
+            {/* The opacity is an ugly hack to prevent a FOUC */}
+            <GithubIcon style={{ opacity: 0 }} />
           </a>
           <div className={styles.exercise}>
             <div

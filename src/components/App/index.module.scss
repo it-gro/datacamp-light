@@ -187,7 +187,7 @@ a.githubLink {
     display: block;
     height: 1em;
     line-height: 100%;
-    opacity: 0.4;
+    opacity: 0.4 !important; // Needs !important to prevent FOUC
     margin: 0.35em 3px 0.3em 0;
   }
 }

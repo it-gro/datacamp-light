@@ -119,7 +119,8 @@ export class Footer extends React.PureComponent<IFooterProps, IFooterState> {
           title="Powered by DataCamp"
           target="_blank"
         >
-          <DatacampLogo />
+          {/* The opacity is an ugly hack to prevent a FOUC */}
+          <DatacampLogo style={{ opacity: 0 }} />
         </a>
       </div>
     );
