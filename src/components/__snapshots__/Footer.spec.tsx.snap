@@ -28,7 +28,13 @@ exports[`Footer should match snapshot 1`] = `
     target="_blank"
     title="Powered by DataCamp"
   >
-    <test-file-stub />
+    <test-file-stub
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    />
   </a>
 </div>
 `;

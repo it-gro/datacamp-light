@@ -27,7 +27,13 @@ exports[`App should match snapshot 1`] = `
       target="_blank"
       title="View DataCamp Light on GitHub"
     >
-      <test-file-stub />
+      <test-file-stub
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      />
     </a>
     <div
       className="exercise"
