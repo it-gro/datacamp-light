@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>DataCamp Light React</title>
+    <title>Documentation | DataCamp Light</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -201,7 +201,7 @@
       <h4>Features</h4>
       <ul>
         <li>Convert any website or blog to an interactive learning platform</li>
-        <li>Work for R, Python and shell</li>
+        <li>Works for R, Python and shell</li>
         <li>All the heavy lifting for running code is handled by DataCamp servers</li>
       </ul>
 
@@ -451,21 +451,21 @@
       <a name="tutorial-exercise-element"></a>
       <h4>Create the Exercise Element</h4>
       <p>
-        To create an exercise, add a <code>&lt;div&gt;</code> tag with the <code>data-datacamp-exercise</code> property to denote that DataCamp Light should parse this element, and a <code>data-lang="python"</code> property to denote the language of this exercise. Possible options are <code>r</code>, <code>python</code> and <code>shell</code>.
+        To create an exercise, add a <code>&lt;div&gt;</code> tag with the <code>data-datacamp-exercise</code> property to denote that DataCamp Light should parse this element, and a <code>data-lang="______"</code> property to denote the language of this exercise. Possible options are <code>r</code>, <code>python</code> and <code>shell</code>.
       </p>
 
       <pre><code class="language-html">&lt;div data-datacamp-exercise data-lang="r"&gt;
-  &lt;!-- The exercise specification will go here --&gt;
+  &lt;!-- The exercise blocks will go here --&gt;
 &lt;/div&gt;</code></pre>
 
       <a name="tutorial-exercise-learn-blocks"></a>
       <h4>Learn about Exercise Blocks</h4>
       <p>
         An exercise consists of different blocks. You'll be familiar with these
-        already if you've created a course on DataCamp.
+        if you've created a course already on DataCamp.
       </p>
       <p>
-        When you start a DataCamp Light exercise, DataCamp prepares the workspace behind the scenes using the <em>pre-exercise code</em>. Then, the <em>sample code</em> is displayed to the student. The student can optionally request a <em>hint</em> if he or she is stuck, or request to see the <em>solution</em>. When the student clicks the &ldquo;Submit&rdquo; button, the <em>sample correctness test</em> is executed to verify the student's solution.
+        When you start a DataCamp Light exercise, DataCamp prepares the workspace behind the scenes using the <em>pre-exercise code</em>. Then, the <em>sample code</em> is displayed to the student. The student can optionally request a <em>hint</em> if he or she is stuck, or request to see the <em>solution</em>. When the student clicks the &ldquo;Submit&rdquo; button, the <em>sample correctness test (SCT)</em> is executed to verify the student's solution.
       </p>
 
       <p>
