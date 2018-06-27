@@ -43,6 +43,10 @@ export class BaseExerciseService {
       ...action, // settings from the action will overwrite settings from the state.
     };
 
+    if (config.language !== "sql" && config.command === "run") {
+      config.command = "console";
+    }
+
     return config;
   }
 }

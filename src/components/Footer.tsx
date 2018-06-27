@@ -61,7 +61,7 @@ export class Footer extends React.PureComponent<IFooterProps, IFooterState> {
 
   onRun() {
     this.props.onSubmit({
-      command: "console",
+      command: "run",
     });
   }
 
