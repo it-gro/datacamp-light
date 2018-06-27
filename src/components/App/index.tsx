@@ -2,10 +2,12 @@ import * as GoldenLayout from "golden-layout";
 import * as React from "react";
 import { Provider } from "react-redux";
 import { Store } from "redux";
+import { Map } from "immutable";
 import languagesConfig, {
   getTabTitle,
   getConsoleTitle,
 } from "@datacamp/dc-languages-config";
+import { IQueryResult } from "@datacamp/multiplexer-client";
 
 import Console from "../../containers/Console";
 import Editor from "../../containers/Editor";
@@ -14,6 +16,7 @@ import FeedbackMessage from "../../containers/FeedbackMessage";
 import Footer from "../../containers/Footer";
 import Plot from "../../containers/Plot";
 import Terminal from "../../containers/Terminal";
+import Table from "../../components/Table";
 
 import { wrap } from "../../helpers/wrap";
 import { State } from "../../redux";
@@ -81,6 +84,50 @@ const SHELL_EXERCISE_CONTENT = (props: IAppProps) => ({
   type: "stack",
 });
 
+const SQL_EXERCISE_CONTENT = (props: IAppProps) => ({
+  content: [
+    {
+      type: "stack",
+      id: "left-pane",
+      content: [
+        {
+          component: "Editor",
+          id: "editor",
+          isClosable: false,
+          props: {
+            className: styles.editor,
+            language: props.language,
+            id: 2,
+          },
+          title: getTabTitle(
+            languagesConfig[props.language].editorPrefixTitle,
+            props.language,
+            null
+          ),
+          type: "react-component",
+        },
+      ],
+    },
+    {
+      type: "stack",
+      id: "right-pane",
+      content: [],
+    },
+  ],
+  type: "row",
+});
+
+const TABLE_COMPONENT = (queryResult: IQueryResult) => ({
+  component: "Table",
+  isClosable: false,
+  id: "table-" + queryResult.name,
+  title: queryResult.name,
+  type: "react-component",
+  props: {
+    table: queryResult,
+  },
+});
+
 export interface IAppProps extends React.Props<App> {
   type?: string;
   pec?: string;
@@ -91,6 +138,7 @@ export interface IAppProps extends React.Props<App> {
   language?: string;
   height?: number;
   nPlots?: number;
+  queryResults?: Map<string, IQueryResult>;
 }
 
 interface IAppState {
@@ -139,6 +187,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     super();
     this.showSolutionTab = this.showSolutionTab.bind(this);
     this.updateActiveElement = this.updateActiveElement.bind(this);
+    this.updateTables = this.updateTables.bind(this);
     window.addEventListener("focus", this.updateActiveElement, true);
     this.state = {
       solutionButtonVisible: true,
@@ -167,6 +216,8 @@ export class App extends React.Component<IAppProps, IAppState> {
           pane.addChild(this.PLOT_CONFIG);
         }
       }
+
+      this.updateTables();
     });
   }
 
@@ -179,13 +230,18 @@ export class App extends React.Component<IAppProps, IAppState> {
       id: 9001,
     };
 
+    let content = {};
+    if (this.props.language === "shell") {
+      content = SHELL_EXERCISE_CONTENT(this.props);
+    } else if (this.props.language === "sql") {
+      content = SQL_EXERCISE_CONTENT(this.props);
+    } else {
+      content = NORMAL_EXERCISE_CONTENT(this.props);
+    }
+
     this.layout = new GoldenLayout(
       {
-        content: [
-          this.props.language === "shell"
-            ? SHELL_EXERCISE_CONTENT(this.props)
-            : NORMAL_EXERCISE_CONTENT(this.props),
-        ],
+        content: [content],
         dimensions: {
           headerHeight: 30,
           minItemHeight: 30,
@@ -208,6 +264,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     );
     this.layout.registerComponent("Plot", wrap(Plot, this.store));
     this.layout.registerComponent("Terminal", wrap(Terminal, this.store));
+    this.layout.registerComponent("Table", wrap(Table, this.store));
 
     requestAnimationFrame(() => {
       window.addEventListener("resize", () => this.layout.updateSize());
@@ -296,6 +353,30 @@ export class App extends React.Component<IAppProps, IAppState> {
     } else if (el === solutionElement) {
       this.store.dispatch(setActiveEditor("solution"));
     }
+  }
+
+  updateTables() {
+    const panes = this.layout.root.getItemsByType("stack");
+    const pane = panes[panes.length - 1];
+
+    this.props.queryResults.forEach((queryResult, name) => {
+      const item = this.layout.root.getItemsById(
+        "table-" + queryResult.name
+      )[0];
+      if (item) {
+        item.remove();
+      }
+
+      const itemConfig = TABLE_COMPONENT(queryResult);
+      pane.addChild(itemConfig);
+      (this.layout.root.getItemsById(
+        itemConfig.id
+      )[0] as any).container.on("show", () => {
+        // TODO Send update command to multiplexer
+      });
+    });
+
+    // TODO Send update command to multiplexer for currently visible table
   }
 
   public render() {

@@ -173,6 +173,13 @@ declare module "@datacamp/multiplexer-client" {
 
   export type Command = IRCommand | IPythonCommand;
 
+  export interface IQueryResult {
+    records: string[][];
+    columns: string[];
+    total: number;
+    name: string;
+  }
+
   interface ISessionOutputCode {
     type: "code";
     payload: string;
@@ -227,6 +234,16 @@ declare module "@datacamp/multiplexer-client" {
     payload: string;
   }
 
+  interface ISessionOutputQueryResult {
+    type: "query_result";
+    payload: IQueryResult;
+  }
+
+  interface ISessionOutputTableNames {
+    type: "table_names";
+    payload: string[];
+  }
+
   // TODO only have the accepted output types
   interface ISessionOutputAny {
     type: string;
@@ -242,7 +259,9 @@ declare module "@datacamp/multiplexer-client" {
     | ISessionOutputIframe
     | ISessionOutputFigureResize
     | ISessionOutputFigureExpand
-    | ISessionOutputServer;
+    | ISessionOutputServer
+    | ISessionOutputQueryResult
+    | ISessionOutputTableNames;
 
   interface ISessionOptions {
     language: Language;

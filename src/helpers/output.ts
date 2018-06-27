@@ -6,7 +6,12 @@ import {
 import { AnyAction as Action } from "typescript-fsa";
 
 import { setExerciseFeedback, setShellProxy } from "../redux/exercise";
-import { addPlot, setPlot } from "../redux/output";
+import {
+  addPlot,
+  setPlot,
+  setQueryResult,
+  setTableNames,
+} from "../redux/output";
 
 import { expandHandler } from "./plot";
 
@@ -62,6 +67,10 @@ export const getAction = (
       );
     case "server":
       return setShellProxy(output.payload);
+    case "query_result":
+      return setQueryResult(output.payload);
+    case "table_names":
+      return setTableNames(output.payload);
     default:
       // Handled by callback
       return null;

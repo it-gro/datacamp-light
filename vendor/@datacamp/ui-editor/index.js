@@ -444,20 +444,20 @@
       function r(t, e, n, r, _, x, w, C) {
         var A = e & j;
         if (!A && "function" != typeof t) throw new TypeError(d);
-        var k = r ? r.length : 0;
+        var R = r ? r.length : 0;
         if (
-          (k || ((e &= ~(g | m)), (r = _ = void 0)),
+          (R || ((e &= ~(g | m)), (r = _ = void 0)),
           (w = void 0 === w ? w : y(Object(b.a)(w), 0)),
           (C = void 0 === C ? C : Object(b.a)(C)),
-          (k -= _ ? _.length : 0),
+          (R -= _ ? _.length : 0),
           e & m)
         ) {
-          var R = r,
+          var k = r,
             I = _;
           r = _ = void 0;
         }
         var E = A ? void 0 : Object(s.a)(t),
-          S = [t, e, n, r, _, R, I, x, w, C];
+          S = [t, e, n, r, _, k, I, x, w, C];
         if (
           (E && Object(f.a)(S, E),
           (t = S[0]),
@@ -465,7 +465,7 @@
           (n = S[2]),
           (r = S[3]),
           (_ = S[4]),
-          (C = S[9] = void 0 === S[9] ? (A ? 0 : t.length) : y(S[9] - k, 0)),
+          (C = S[9] = void 0 === S[9] ? (A ? 0 : t.length) : y(S[9] - R, 0)),
           !C && e & (O | h) && (e &= ~(O | h)),
           e && e != p)
         )
@@ -582,7 +582,7 @@
         var W,
           B = e & C,
           T = e & A,
-          q = e & k;
+          q = e & R;
         if ((n && (W = z ? n(t, P, z, L) : n(t)), void 0 !== W)) return W;
         if (!Object(_.a)(t)) return t;
         var F = Object(g.a)(t);
@@ -592,7 +592,7 @@
           var D = Object(p.a)(t),
             N = D == I || D == E;
           if (Object(m.a)(t)) return Object(s.a)(t, B);
-          if (D == S || D == R || (N && !z)) {
+          if (D == S || D == k || (N && !z)) {
             if (((W = T || N ? {} : Object(h.a)(t)), !B))
               return T
                 ? Object(v.a)(t, Object(o.a)(W, t))
@@ -651,13 +651,13 @@
         w = n(8),
         C = 1,
         A = 2,
-        k = 4,
-        R = "[object Arguments]",
+        R = 4,
+        k = "[object Arguments]",
         I = "[object Function]",
         E = "[object GeneratorFunction]",
         S = "[object Object]",
         M = {};
-      (M[R] = M["[object Array]"] = M["[object ArrayBuffer]"] = M[
+      (M[k] = M["[object Array]"] = M["[object ArrayBuffer]"] = M[
         "[object DataView]"
       ] = M["[object Boolean]"] = M["[object Date]"] = M[
         "[object Float32Array]"
@@ -1809,7 +1809,7 @@
           _ = setTimeout(b, l(t));
         }
         function d(t) {
-          return (_ = void 0), k && h ? r(t) : ((h = g = void 0), y);
+          return (_ = void 0), R && h ? r(t) : ((h = g = void 0), y);
         }
         function p() {
           void 0 !== _ && clearTimeout(_), (w = 0), (h = x = g = _ = void 0);
@@ -1835,7 +1835,7 @@
           w = 0,
           C = !1,
           A = !1,
-          k = !0;
+          R = !0;
         if ("function" != typeof t) throw new TypeError(c);
         return (
           (e = Object(u.a)(e) || 0),
@@ -1843,7 +1843,7 @@
             ((C = !!n.leading),
             (A = "maxWait" in n),
             (m = A ? o(Object(u.a)(n.maxWait) || 0, e) : m),
-            (k = "trailing" in n ? !!n.trailing : k)),
+            (R = "trailing" in n ? !!n.trailing : R)),
           (O.cancel = p),
           (O.flush = j),
           O
@@ -2320,12 +2320,12 @@
             var h = Object(l.a)(d, j);
             return Object(o.a)(t, e, r, A.placeholder, n, d, h, x, w, C - b);
           }
-          var P = R ? n : this,
+          var P = k ? n : this,
             z = I ? P[t] : t;
           return (
             (b = d.length),
             x ? (d = Object(f.a)(d, x)) : S && b > 1 && d.reverse(),
-            k && w < b && (d.length = w),
+            R && w < b && (d.length = w),
             this &&
               this !== v.a &&
               this instanceof A &&
@@ -2333,8 +2333,8 @@
             z.apply(P, d)
           );
         }
-        var k = e & O,
-          R = e & b,
+        var R = e & O,
+          k = e & b,
           I = e & d,
           E = e & (p | j),
           S = e & h,
@@ -5141,14 +5141,14 @@
           w = Object(l.a)(x),
           C = Object(u.a)(x, w),
           A = 0,
-          k = e.interpolate || g,
-          R = "__p += '",
+          R = e.interpolate || g,
+          k = "__p += '",
           I = RegExp(
             (e.escape || g).source +
               "|" +
-              k.source +
+              R.source +
               "|" +
-              (k === v.a ? h : g).source +
+              (R === v.a ? h : g).source +
               "|" +
               (e.evaluate || g).source +
               "|$",
@@ -5158,19 +5158,19 @@
         t.replace(I, function(e, n, r, a, i, u) {
           return (
             r || (r = a),
-            (R += t.slice(A, u).replace(m, o.a)),
-            n && ((y = !0), (R += "' +\n__e(" + n + ") +\n'")),
-            i && ((_ = !0), (R += "';\n" + i + ";\n__p += '")),
-            r && (R += "' +\n((__t = (" + r + ")) == null ? '' : __t) +\n'"),
+            (k += t.slice(A, u).replace(m, o.a)),
+            n && ((y = !0), (k += "' +\n__e(" + n + ") +\n'")),
+            i && ((_ = !0), (k += "';\n" + i + ";\n__p += '")),
+            r && (k += "' +\n((__t = (" + r + ")) == null ? '' : __t) +\n'"),
             (A = u + e.length),
             e
           );
         }),
-          (R += "';\n");
+          (k += "';\n");
         var S = e.variable;
-        S || (R = "with (obj) {\n" + R + "\n}\n"),
-          (R = (_ ? R.replace(p, "") : R).replace(j, "$1").replace(O, "$1;")),
-          (R =
+        S || (k = "with (obj) {\n" + k + "\n}\n"),
+          (k = (_ ? k.replace(p, "") : k).replace(j, "$1").replace(O, "$1;")),
+          (k =
             "function(" +
             (S || "obj") +
             ") {\n" +
@@ -5180,12 +5180,12 @@
             (_
               ? ", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n"
               : ";\n") +
-            R +
+            k +
             "return __p\n}");
         var M = Object(i.a)(function() {
-          return Function(w, E + "return " + R).apply(void 0, C);
+          return Function(w, E + "return " + k).apply(void 0, C);
         });
-        if (((M.source = R), Object(s.a)(M))) throw M;
+        if (((M.source = k), Object(s.a)(M))) throw M;
         return M;
       }
       var a = n(78),
@@ -5867,13 +5867,13 @@
       n.d(e, "cloneWith", function() {
         return A.a;
       });
-      var k = n(113);
+      var R = n(113);
       n.d(e, "commit", function() {
-        return k.a;
-      });
-      var R = n(184);
-      n.d(e, "compact", function() {
         return R.a;
+      });
+      var k = n(184);
+      n.d(e, "compact", function() {
+        return k.a;
       });
       var I = n(185);
       n.d(e, "concat", function() {
@@ -6083,13 +6083,13 @@
       n.d(e, "floor", function() {
         return At.a;
       });
-      var kt = n(238);
+      var Rt = n(238);
       n.d(e, "flow", function() {
-        return kt.a;
-      });
-      var Rt = n(239);
-      n.d(e, "flowRight", function() {
         return Rt.a;
+      });
+      var kt = n(239);
+      n.d(e, "flowRight", function() {
+        return kt.a;
       });
       var It = n(125);
       n.d(e, "forEach", function() {
@@ -6299,13 +6299,13 @@
       n.d(e, "isNull", function() {
         return Ae.a;
       });
-      var ke = n(137);
+      var Re = n(137);
       n.d(e, "isNumber", function() {
-        return ke.a;
-      });
-      var Re = n(6);
-      n.d(e, "isObject", function() {
         return Re.a;
+      });
+      var ke = n(6);
+      n.d(e, "isObject", function() {
+        return ke.a;
       });
       var Ie = n(5);
       n.d(e, "isObjectLike", function() {
@@ -6511,13 +6511,13 @@
       n.d(e, "once", function() {
         return An.a;
       });
-      var kn = n(315);
+      var Rn = n(315);
       n.d(e, "orderBy", function() {
-        return kn.a;
-      });
-      var Rn = n(316);
-      n.d(e, "over", function() {
         return Rn.a;
+      });
+      var kn = n(316);
+      n.d(e, "over", function() {
+        return kn.a;
       });
       var In = n(318);
       n.d(e, "overArgs", function() {
@@ -6727,13 +6727,13 @@
       n.d(e, "sortedUniqBy", function() {
         return Ar.a;
       });
-      var kr = n(368);
+      var Rr = n(368);
       n.d(e, "split", function() {
-        return kr.a;
-      });
-      var Rr = n(369);
-      n.d(e, "spread", function() {
         return Rr.a;
+      });
+      var kr = n(369);
+      n.d(e, "spread", function() {
+        return kr.a;
       });
       var Ir = n(370);
       n.d(e, "startCase", function() {
@@ -6943,13 +6943,13 @@
       n.d(e, "unzip", function() {
         return Aa.a;
       });
-      var ka = n(151);
+      var Ra = n(151);
       n.d(e, "unzipWith", function() {
-        return ka.a;
-      });
-      var Ra = n(407);
-      n.d(e, "update", function() {
         return Ra.a;
+      });
+      var ka = n(407);
+      n.d(e, "update", function() {
+        return ka.a;
       });
       var Ia = n(408);
       n.d(e, "updateWith", function() {
@@ -7000,7 +7000,7 @@
         return Fa.a;
       }),
         n.d(e, "wrapperCommit", function() {
-          return k.a;
+          return R.a;
         }),
         n.d(e, "wrapperLodash", function() {
           return Ge.a;
@@ -8224,8 +8224,8 @@
         w = n(654),
         C = r(w),
         A = n(655),
-        k = r(A),
-        R = ace.acequire("ace/range").Range,
+        R = r(A),
+        k = ace.acequire("ace/range").Range,
         I = (function(t) {
           function e(t, n) {
             i(this, e);
@@ -8281,11 +8281,13 @@
                     u = e.sct,
                     c = e.language,
                     o = e.getCompletions,
-                    s = e.setCompletionsCallback,
-                    f = new y.TextCompleter(
+                    s = e.setCompletionsCallback;
+                  if (this.getLangConfig().completerIgnoreRegexArr) {
+                    var f = new y.TextCompleter(
                       this.getLangConfig().completerIgnoreRegexArr
                     );
-                  (0, y.addCompleter)(t, f);
+                    (0, y.addCompleter)(t, f);
+                  }
                   var l = window.ace.acequire("ace/ext/language_tools")
                     .keyWordCompleter;
                   if (
@@ -8385,7 +8387,7 @@
                   e.gotoLine(t["line-start"], t["column-start"] - 1, !0),
                     e.scrollToLine(t["line-start"], !0, !0, function() {}),
                     (this.lastMarker = n.addMarker(
-                      new R(
+                      new k(
                         t["line-start"] - 1,
                         t["column-start"] - 1,
                         t["line-end"] - 1,
@@ -8423,11 +8425,11 @@
                     };
                   return j.default.createElement(
                     "div",
-                    { className: "" + k.editor },
+                    { className: "" + R.editor },
                     j.default.createElement(x.default, {
                       code: E(n),
                       name: this.ace_name,
-                      className: k.editor + " " + this.props.className,
+                      className: R.editor + " " + this.props.className,
                       mode: a || i.mode,
                       tabSize: i.tabSize,
                       fontSize: "0.85em",
@@ -9790,7 +9792,7 @@
           case w:
           case C:
           case A:
-          case k:
+          case R:
             return Object(o.a)(t, n);
           case l:
             return new r();
@@ -9828,7 +9830,7 @@
         w = "[object Uint8Array]",
         C = "[object Uint8ClampedArray]",
         A = "[object Uint16Array]",
-        k = "[object Uint32Array]";
+        R = "[object Uint32Array]";
       e.a = r;
     },
     function(t, e, n) {
@@ -9903,11 +9905,11 @@
           );
         if (!(n & v)) {
           var A = x && O.call(t, "__wrapped__"),
-            k = w && O.call(e, "__wrapped__");
-          if (A || k) {
-            var R = A ? t.value() : t,
-              I = k ? e.value() : e;
-            return h || (h = new a.a()), j(R, I, n, r, h);
+            R = w && O.call(e, "__wrapped__");
+          if (A || R) {
+            var k = A ? t.value() : t,
+              I = R ? e.value() : e;
+            return h || (h = new a.a()), j(k, I, n, r, h);
           }
         }
         return !!C && (h || (h = new a.a()), Object(c.a)(t, e, n, r, j, h));
@@ -9967,10 +9969,10 @@
           case p:
             var A = o.a;
           case h:
-            var k = r & f;
-            if ((A || (A = s.a), t.size != e.size && !k)) return !1;
-            var R = C.get(t);
-            if (R) return R == e;
+            var R = r & f;
+            if ((A || (A = s.a), t.size != e.size && !R)) return !1;
+            var k = C.get(t);
+            if (k) return k == e;
             (r |= l), C.set(t, e);
             var I = Object(c.a)(A(t), A(e), r, a, x, C);
             return C.delete(t), I;
@@ -10127,16 +10129,16 @@
         var C = m ? m(_, x, n + "", t, e, y) : void 0,
           A = void 0 === C;
         if (A) {
-          var k = Object(f.a)(x),
-            R = !k && Object(v.a)(x),
-            I = !k && !R && Object(j.a)(x);
+          var R = Object(f.a)(x),
+            k = !R && Object(v.a)(x),
+            I = !R && !k && Object(j.a)(x);
           (C = x),
-            k || R || I
+            R || k || I
               ? Object(f.a)(_)
                 ? (C = _)
                 : Object(l.a)(_)
                   ? (C = Object(c.a)(_))
-                  : R
+                  : k
                     ? ((A = !1), (C = Object(i.a)(x, !0)))
                     : I ? ((A = !1), (C = Object(u.a)(x, !0))) : (C = [])
               : Object(p.a)(x) || Object(s.a)(x)
@@ -10602,8 +10604,8 @@
         w = n(154),
         C = n(10),
         A = n(1),
-        k = n(6),
-        R = n(8),
+        R = n(6),
+        k = n(8),
         I = n(17),
         E = n(642),
         S = n(643),
@@ -10623,8 +10625,8 @@
         V = (function(t) {
           return function(e, n, r) {
             if (null == r) {
-              var a = Object(k.a)(n),
-                i = a && Object(R.a)(n),
+              var a = Object(R.a)(n),
+                i = a && Object(k.a)(n),
                 u = i && i.length && Object(m.a)(n, i);
               (u ? u.length : a) || ((r = n), (n = e), (e = this));
             }
@@ -10690,7 +10692,7 @@
         (T.a.invokeMap = a.a.invokeMap),
         (T.a.iteratee = b.a.iteratee),
         (T.a.keyBy = a.a.keyBy),
-        (T.a.keys = R.a),
+        (T.a.keys = k.a),
         (T.a.keysIn = f.a.keysIn),
         (T.a.map = a.a.map),
         (T.a.mapKeys = f.a.mapKeys),
@@ -10853,7 +10855,7 @@
         (T.a.isNil = c.a.isNil),
         (T.a.isNull = c.a.isNull),
         (T.a.isNumber = c.a.isNumber),
-        (T.a.isObject = k.a),
+        (T.a.isObject = R.a),
         (T.a.isObjectLike = c.a.isObjectLike),
         (T.a.isPlainObject = c.a.isPlainObject),
         (T.a.isRegExp = c.a.isRegExp),
@@ -11213,8 +11215,8 @@
         w = n(257),
         C = n(260),
         A = n(261),
-        k = n(285),
-        R = n(17),
+        R = n(285),
+        k = n(17),
         I = n(288),
         E = n(309),
         S = n(330),
@@ -11279,8 +11281,8 @@
         intersection: w.a,
         intersectionBy: C.a,
         intersectionWith: A.a,
-        join: k.a,
-        last: R.a,
+        join: R.a,
+        last: k.a,
         lastIndexOf: I.a,
         nth: E.a,
         pull: S.a,
@@ -11383,8 +11385,8 @@
         w = n(342),
         C = n(349),
         A = n(350),
-        k = n(353),
-        R = n(354),
+        R = n(353),
+        k = n(354),
         I = n(357),
         E = n(358);
       e.a = {
@@ -11412,8 +11414,8 @@
         reject: w.a,
         sample: C.a,
         sampleSize: A.a,
-        shuffle: k.a,
-        size: R.a,
+        shuffle: R.a,
+        size: k.a,
         some: I.a,
         sortBy: E.a,
       };
@@ -11600,8 +11602,8 @@
         w = n(80),
         C = n(273),
         A = n(23),
-        k = n(136),
-        R = n(62),
+        R = n(136),
+        k = n(62),
         I = n(111),
         E = n(274),
         S = n(275),
@@ -11657,8 +11659,8 @@
         isError: w.a,
         isFinite: C.a,
         isFunction: A.a,
-        isInteger: k.a,
-        isLength: R.a,
+        isInteger: R.a,
+        isLength: k.a,
         isMap: I.a,
         isMatch: E.a,
         isMatchWith: S.a,
@@ -11842,8 +11844,8 @@
         w = n(251),
         C = n(83),
         A = n(262),
-        k = n(263),
-        R = n(264),
+        R = n(263),
+        k = n(264),
         I = n(8),
         E = n(14),
         S = n(294),
@@ -11890,8 +11892,8 @@
         has: w.a,
         hasIn: C.a,
         invert: A.a,
-        invertBy: k.a,
-        invoke: R.a,
+        invertBy: R.a,
+        invoke: k.a,
         keys: I.a,
         keysIn: E.a,
         mapKeys: S.a,
@@ -12033,8 +12035,8 @@
         w = n(388),
         C = n(391),
         A = n(393),
-        k = n(394),
-        R = n(395),
+        R = n(394),
+        k = n(395),
         I = n(396),
         E = n(398),
         S = n(409),
@@ -12065,8 +12067,8 @@
         toLower: w.a,
         toUpper: C.a,
         trim: A.a,
-        trimEnd: k.a,
-        trimStart: R.a,
+        trimEnd: R.a,
+        trimStart: k.a,
         truncate: I.a,
         unescape: E.a,
         upperCase: S.a,
@@ -12139,8 +12141,8 @@
         w = n(329),
         C = n(337),
         A = n(338),
-        k = n(82),
-        R = n(77),
+        R = n(82),
+        k = n(77),
         I = n(372),
         E = n(373),
         S = n(374),
@@ -12172,8 +12174,8 @@
         propertyOf: w.a,
         range: C.a,
         rangeRight: A.a,
-        stubArray: k.a,
-        stubFalse: R.a,
+        stubArray: R.a,
+        stubFalse: k.a,
         stubObject: I.a,
         stubString: E.a,
         stubTrue: S.a,

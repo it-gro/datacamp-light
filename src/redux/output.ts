@@ -1,5 +1,5 @@
 import { Epic } from "redux-observable";
-import { Record, List } from "immutable";
+import { Record, List, Map } from "immutable";
 import { reducerWithInitialState } from "typescript-fsa-reducers";
 import actionCreatorFactory, { AnyAction as Action } from "typescript-fsa";
 import { Observable } from "rxjs/Observable";
@@ -17,7 +17,7 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/ignoreElements";
 import "rxjs/add/operator/take";
 import { includes, some } from "lodash";
-import { SessionOutput } from "@datacamp/multiplexer-client";
+import { SessionOutput, IQueryResult } from "@datacamp/multiplexer-client";
 import { IPlotSource } from "@datacamp/ui-plot";
 
 import { State } from "./";
@@ -52,6 +52,10 @@ export const setPlot = createAction<{
   source: IPlotSource;
 }>("SET_PLOT");
 
+export const setQueryResult = createAction<IQueryResult>("SET_QUERY_RESULT");
+
+export const setTableNames = createAction<string[]>("SET_TABLE_NAMES");
+
 /*
  * State definition */
 
@@ -59,12 +63,14 @@ export interface IOutputState {
   consoleOutputCallback: (output: SessionOutput[]) => void;
   plots: List<IPlotSource>;
   plotIndex: number;
+  queryResults: Map<string, IQueryResult>;
 }
 
 const initialState: IOutputState = {
   consoleOutputCallback: output => null,
   plots: List<IPlotSource>(),
   plotIndex: 0,
+  queryResults: Map<string, IQueryResult>(),
 };
 
 export class OutputState extends Record(initialState) {}
@@ -85,6 +91,20 @@ export const reducer = reducerWithInitialState(new OutputState())
   .case(setPlot, (state, { figureIndex, source }) =>
     state.update("plots", plots => plots.set(figureIndex, source))
   )
+  .case(setQueryResult, (state, payload) =>
+    state.setIn(["queryResults", payload.name], payload)
+  )
+  .case(setTableNames, (state, names) => {
+    for (let name of names) {
+      state = state.setIn(["queryResults", name], {
+        name,
+        records: [],
+        columns: [],
+        total: 0,
+      });
+    }
+    return state;
+  })
   .build();
 
 export default reducer;
@@ -109,6 +129,9 @@ export const selectPlotSource = (state: State) =>
   selectOutput(state)
     .get("plots")
     .toJS()[selectPlotIndex(state)];
+
+export const selectQueryResults = (state: State) =>
+  selectOutput(state).get("queryResults");
 
 /*
  * Epics */

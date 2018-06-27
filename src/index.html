@@ -14,6 +14,27 @@
 
     <div class="exercise">
       <div class="title">
+        <h2>SQL Exercise</h2>
+      </div>
+      <div data-datacamp-exercise data-lang="sql" data-height="500" id="sql-example">
+        <div data-type="hint">Run the code and look at the result tab!</div>
+        <code data-type="pre-exercise-code">
+          connect('postgresql', 'films')
+        </code>
+        <code data-type="sample-code">
+          ____ name FROM people;
+        </code>
+        <code data-type="sct">
+          Ex().test_student_typed('SELECT|select', msg='You need to add `SELECT` at the start of line 1!')
+          Ex().test_has_columns()
+          Ex().test_error()
+          Ex().success_msg("Excellent error editing! You can feel safe experimenting with code in the editor &ndash; you'll always get feedback if something goes wrong.")
+        </code>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="title">
         <h2>Shell Exercise</h2>
       </div>
       <div data-datacamp-exercise data-lang="shell" data-height="500" id="shell-example">

@@ -2,7 +2,7 @@ import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { Store } from "redux";
 
 import { State } from "../redux";
-import { selectPlots } from "../redux/output";
+import { selectPlots, selectQueryResults } from "../redux/output";
 
 import { App, IAppProps } from "../components/App";
 
@@ -10,6 +10,7 @@ const mapStateToProps: MapStateToProps<Partial<IAppProps>, {}> = (
   state: State
 ) => ({
   nPlots: selectPlots(state).length,
+  queryResults: selectQueryResults(state),
 });
 
 const createAppInstance = (store: Store<State>) =>

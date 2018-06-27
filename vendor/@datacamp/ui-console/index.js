@@ -1857,7 +1857,7 @@
             d = a.match(m);
           return (
             d &&
-              (i.push({ type: p.promptToken, value: d[0] }),
+              (i.push({ type: p.promptToken || "identifier", value: d[0] }),
               (a = a.substring(d[0].length, a.length))),
             i.push({ type: r(s ? s.token : null), value: a }),
             i

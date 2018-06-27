@@ -1,0 +1,31 @@
+@import "global.scss";
+
+.table {
+  table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%
+  }
+
+  tr {
+    border-bottom: $table-border-width solid $primary-extra-light;
+  }
+
+  tr:nth-of-type(2n) {
+    background: $primary-extra-light;
+  }
+
+  th {
+    border-bottom: $table-border-width solid $text-tertiary;
+    color: $primary;
+  }
+
+  td,
+  th {
+    padding: $table-spacing;
+  }
+
+  td {
+    color: $text-secondary;
+  }
+}
