@@ -2,6 +2,10 @@ import * as GoldenLayout from "golden-layout";
 import * as React from "react";
 import { Provider } from "react-redux";
 import { Store } from "redux";
+import languagesConfig, {
+  getTabTitle,
+  getConsoleTitle,
+} from "@datacamp/dc-languages-config";
 
 import Console from "../../containers/Console";
 import Editor from "../../containers/Editor";
@@ -34,7 +38,11 @@ const NORMAL_EXERCISE_CONTENT = (props: IAppProps) => ({
             language: props.language,
             id: 2,
           },
-          title: "script." + (props.language === "python" ? "py" : "R"),
+          title: getTabTitle(
+            languagesConfig[props.language].editorPrefixTitle,
+            props.language,
+            null
+          ),
           type: "react-component",
         },
       ],
@@ -51,7 +59,7 @@ const NORMAL_EXERCISE_CONTENT = (props: IAppProps) => ({
             className: styles.console,
             language: props.language,
           },
-          title: props.language === "python" ? "IPython Shell" : "R Console",
+          title: getConsoleTitle(props.language) || "Console",
           type: "react-component",
         },
       ],
@@ -66,7 +74,7 @@ const SHELL_EXERCISE_CONTENT = (props: IAppProps) => ({
       component: "Terminal",
       id: "terminal",
       isClosable: false,
-      title: "Terminal",
+      title: getConsoleTitle("shell"),
       type: "react-component",
     },
   ],

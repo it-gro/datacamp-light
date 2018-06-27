@@ -123,7 +123,7 @@ declare module "@datacamp/multiplexer-client" {
 
   export type SessionStatus = ISessionStatus;
 
-  export type Language = "r" | "python" | "revo" | "shell";
+  export type Language = "r" | "python" | "revo" | "shell" | "sql";
   export type ExerciseType =
     | "PlainMultipleChoiceExercise"
     | "PureMultipleChoiceExercise"
@@ -493,4 +493,20 @@ declare module "@datacamp/ui-plot" {
   }
 
   export default class Plot extends Component<IPlotProps> {}
+}
+
+declare module "@datacamp/dc-languages-config" {
+  const config: { [x: string]: { [y: string]: any } };
+  export default config;
+
+  export const getTabTitle: (
+    name: string,
+    language: string,
+    type: string
+  ) => string;
+  export const getConsoleTitle: (language: string) => string;
+  export const getMCCommand: (language: string, selection: string) => string;
+  export const getAutoCompletionRules: (language: string) => any;
+  export const getAutoCompletionConfig: (language: string) => any;
+  export const mapLanguageName: (language: string) => string;
 }
