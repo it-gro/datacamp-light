@@ -7,7 +7,7 @@
   <a href="https://codecov.io/gh/datacamp/datacamp-light"><img src="https://codecov.io/gh/datacamp/datacamp-light/branch/beta/graph/badge.svg" /></a>
 </p>
 
-*This is is the all-new DataCamp Light. To access the old
+*This is the all-new DataCamp Light. To access the old
 version, click [here](https://github.com/datacamp/datacamp-light/tree/d0c7ae4afc50b590bbf34bfffaba8fb1a0d929f5)*
 
 [![DataCamp Light banner](https://assets.datacamp.com/img/github/datacamp-light/bannerv3.1.png "Banner")](https://cdn.datacamp.com/dcl-react-prod/example.html)
@@ -27,6 +27,7 @@ version, click [here](https://github.com/datacamp/datacamp-light/tree/d0c7ae4afc
   * [Solution](#solution)
   * [Submission Correctness Test (SCT)](#submission-correctness-test-sct)
   * [Hint](#hint)
+  * [Other Options](#other-options)
 - [How does it work?](#how-does-it-work)
 - [Contributing](#contributing)
   * [Dependencies](#dependencies)
@@ -239,6 +240,16 @@ It is possible for the hint to contain for instance `<code>` tags as is the case
 
 
 
+### Other Options
+
+- Add a `data-show-run-button` attribute to always show the "Run" button, so your visitors can try out the code without submitting it.
+- Add a `data-no-lazy-loading` attribute to load all exercises as soon as the page is loaded, instead of waiting for the user to scroll down to them. This may cause performance issues, but can fix compatibility problems with iFrame-based pages.
+- Add the following css to the styling of your page to hide the configuration code of the exercises until they are loaded:
+```css
+[data-datacamp-exercise] {
+  visibility: hidden;
+}
+```
 
 
 
@@ -272,7 +283,7 @@ so if you're not familiar with one of those, you might want to read up a bit.
 To develop DataCamp Light, you'll need to run the app locally. This repository
 includes some example exercises to test it on.
 
-Get started by cloning this repostory, installing the dependencies and starting
+Get started by cloning this repository, installing the dependencies and starting
 the development server. As you make changes, the page will reload with your new
 code.
 
